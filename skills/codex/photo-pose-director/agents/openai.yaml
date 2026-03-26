@@ -1,0 +1,4 @@
+interface:
+  display_name: "Photo Pose Director"
+  short_description: "Analyze photo poses with Chinese-first direction."
+  default_prompt: "Use $photo-pose-director to analyze this reference image in Chinese, identify the replication anchors, give camera position and settings, direct the model on set, suggest color grading, keep the subject consistent, and generate short recreation and upgrade prompts."
