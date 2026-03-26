@@ -1,5 +1,6 @@
 # Generated archives
 *.zip
+dist/
 
 # OS / editor
 .DS_Store
