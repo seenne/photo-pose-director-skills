@@ -1,7 +1,5 @@
 # Photo Pose Director Skills
 
-![Photo Pose Director 封面图](assets/github-cover.png)
-
 > 从参考图到可执行复刻方案。
 
 面向摄影师、人像创作者和 AI 生图用户的参考图分析与复刻技能仓库。它把一张参考图拆成真正可执行的复刻路径：看懂画面、指导模特、还原相机拍法，并生成尽量贴近原图的复刻提示词。
@@ -12,6 +10,8 @@
 ![OpenClaw](https://img.shields.io/badge/OpenClaw-supported-f3e6d8?style=flat-square)
 ![ChatGPT](https://img.shields.io/badge/ChatGPT-packaged-f3e6d8?style=flat-square)
 ![Gemini](https://img.shields.io/badge/Gemini-packaged-f3e6d8?style=flat-square)
+
+![Photo Pose Director 封面图](assets/github-cover.png)
 
 ## 核心价值
 
