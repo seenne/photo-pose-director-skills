@@ -24,6 +24,8 @@
 
 - `Codex` 版技能
 - `OpenClaw` 版技能
+- `ChatGPT` 安装包
+- `Gemini` 安装包
 
 以及完整的设计文档和实现规划，方便继续迭代。
 
@@ -54,6 +56,9 @@
 │  └─ openclaw/
 │     └─ photo_pose_director/
 │        └─ SKILL.md
+├─ platform-packs/
+│  ├─ chatgpt/
+│  └─ gemini/
 ├─ .gitignore
 ├─ LICENSE
 └─ README.md
@@ -82,6 +87,20 @@
 - 工作区：`<workspace>/skills/photo_pose_director`
 - 全局：`~/.openclaw/skills/photo_pose_director`
 
+### ChatGPT
+
+使用：
+
+- `platform-packs/chatgpt/custom-gpt/` 创建自定义 GPT
+- `platform-packs/chatgpt/instructions/` 配置 Custom Instructions
+
+### Gemini
+
+使用：
+
+- `platform-packs/gemini/gem/` 创建 Gemini Gem
+- `platform-packs/gemini/instructions/` 做长期系统指令使用
+
 ## 推荐用法
 
 ### Codex 调用示例
@@ -94,6 +113,12 @@ Use $photo-pose-director to analyze this reference image in Chinese, identify th
 
 ```text
 分析这张参考图，告诉我复刻关键锚点、相机拍摄方案、动作指导、后期调色方向和 AI 复刻提示词。
+```
+
+### ChatGPT / Gemini 推荐请求方式
+
+```text
+分析这张参考图，重点告诉我怎么复刻：先给复刻关键锚点，再给相机机位、焦段、参数、布光、后期、动作指导和 AI 复刻提示词。
 ```
 
 ## 示例图用法
