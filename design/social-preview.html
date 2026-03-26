@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Pose Director Social Preview</title>
+  <style>
+    :root {
+      --cream: #f8f2ea;
+      --warm: #dbb895;
+      --gold: #b77c45;
+      --ink: #221816;
+      --card: rgba(255, 249, 243, 0.74);
+      --line: rgba(111, 77, 56, 0.16);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255, 239, 219, 0.9), transparent 28%),
+        linear-gradient(135deg, #fbf7f1 0%, #f2e7d9 54%, #ead6c2 100%);
+      color: var(--ink);
+    }
+    .frame {
+      position: relative;
+      width: 1280px;
+      height: 640px;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.42), rgba(255,255,255,0.06)),
+        radial-gradient(circle at 84% 20%, rgba(255, 223, 189, 0.78), transparent 28%);
+    }
+    .grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.14;
+      background-image: radial-gradient(rgba(56, 40, 31, 0.26) 0.7px, transparent 0.7px);
+      background-size: 8px 8px;
+      mix-blend-mode: multiply;
+    }
+    .layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 30px;
+      height: 100%;
+      padding: 56px 60px;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(111, 77, 56, 0.12);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      color: #6a4a38;
+      text-transform: uppercase;
+    }
+    .title {
+      margin: 20px 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 72px;
+      line-height: 0.93;
+      letter-spacing: -0.04em;
+    }
+    .subtitle {
+      max-width: 520px;
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.5;
+      color: rgba(34, 24, 22, 0.82);
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .tag {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(111, 77, 56, 0.12);
+      color: #5d4334;
+      font-size: 15px;
+    }
+    .stack {
+      position: relative;
+      height: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 32% 18%, rgba(255,255,255,0.9), transparent 26%),
+        linear-gradient(135deg, #f1e0cf 0%, #e0c2a1 48%, #c88f59 100%);
+      box-shadow: 0 22px 70px rgba(101, 71, 50, 0.16);
+    }
+    .soft-box {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      top: 34px;
+      bottom: 34px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.18)),
+        radial-gradient(circle at 38% 28%, rgba(255, 248, 234, 0.9), transparent 26%);
+    }
+    .photo {
+      position: absolute;
+      left: 32px;
+      bottom: 24px;
+      width: 260px;
+      height: 440px;
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0)),
+        linear-gradient(160deg, #f6ebdf 0%, #f0d9c2 42%, #ddb48a 100%);
+      overflow: hidden;
+    }
+    .photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 36% 20%, rgba(255,255,255,0.9), transparent 22%),
+        linear-gradient(180deg, rgba(173, 112, 57, 0.35), transparent 36%);
+    }
+    .silhouette {
+      position: absolute;
+      left: 72px;
+      bottom: 40px;
+      width: 120px;
+      height: 280px;
+      border-radius: 80px 80px 40px 40px;
+      background:
+        radial-gradient(circle at 52% 18%, #f7ddc6 0 18%, transparent 19%),
+        linear-gradient(180deg, #2a1c1a 0 24%, transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,0.92) 28%, rgba(249,236,225,0.9) 100%);
+      filter: drop-shadow(0 18px 24px rgba(83, 56, 37, 0.18));
+    }
+    .panel {
+      position: absolute;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 12px 34px rgba(88, 60, 42, 0.12);
+      padding: 18px 20px;
+      color: #2d211d;
+    }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #5a3d30;
+    }
+    .panel p, .panel li {
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .panel ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .panel.a { top: 54px; right: 32px; width: 250px; }
+    .panel.b { top: 234px; right: 50px; width: 284px; }
+    .panel.c { bottom: 34px; right: 26px; width: 330px; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="grain"></div>
+    <div class="layout">
+      <section>
+        <div class="eyebrow">Photography Reference Skill Pack</div>
+        <h1 class="title">Photo Pose<br />Director</h1>
+        <p class="subtitle">Analyze a reference image, rebuild the camera setup, direct the model on set, and recreate the result with prompts that stay true to the original.</p>
+        <div class="tags">
+          <div class="tag">Camera Setup</div>
+          <div class="tag">Model Direction</div>
+          <div class="tag">Color Grading</div>
+          <div class="tag">Prompt Recreation</div>
+        </div>
+      </section>
+
+      <section class="stack">
+        <div class="soft-box"></div>
+        <div class="photo">
+          <div class="silhouette"></div>
+        </div>
+        <div class="panel a">
+          <h3>复刻关键锚点</h3>
+          <ul>
+            <li>高机位轻俯拍</li>
+            <li>暖色柔光</li>
+            <li>半倚姿态</li>
+          </ul>
+        </div>
+        <div class="panel b">
+          <h3>相机复刻方案</h3>
+          <p>50mm 观感优先，f/2.2 - f/2.8，窗边主光，轻微补光，奶油暖调收尾。</p>
+        </div>
+        <div class="panel c">
+          <h3>支持平台</h3>
+          <p>Codex · OpenClaw · ChatGPT · Gemini</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

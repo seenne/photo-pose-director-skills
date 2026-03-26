@@ -1,5 +1,7 @@
 # Photo Pose Director Skills
 
+![Photo Pose Director 封面图](assets/github-cover.png)
+
 一个专门用于“摄影参考图分析与复刻执行”的技能仓库，支持两类使用场景：
 
 - 真人拍摄复刻
