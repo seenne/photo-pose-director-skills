@@ -146,6 +146,16 @@ Use $photo-pose-director to analyze this reference image in Chinese, identify th
 - 4 到 6 句现场口播版
 - 动作拆解
 
+## 示例目录
+
+仓库里已经提供第一批真人拍摄复刻示例，见：
+
+- [真人拍摄复刻示例目录](examples/real-shoot-recreation/README.md)
+- [室内柔光私房](examples/real-shoot-recreation/indoor-soft-private-portrait.md)
+- [窗边自然光人像](examples/real-shoot-recreation/window-light-portrait.md)
+- [户外街拍氛围人像](examples/real-shoot-recreation/outdoor-street-portrait.md)
+- [情绪化坐姿半躺构图](examples/real-shoot-recreation/moody-seated-recline.md)
+
 ## 默认输出逻辑
 
 当前技能默认按这个顺序输出：
